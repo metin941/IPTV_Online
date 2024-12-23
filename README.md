@@ -4,7 +4,7 @@
 [<img src="https://hatscripts.github.io/circle-flags/flags/tr.svg" width="24">](lists/turkey.md)
 
 
-To use it point your IPTV player to https://raw.githubusercontent.com/IPTVSolutions/custom_iptv/master/playlists/.
+To use it point your IPTV player to https://raw.githubusercontent.com/IPTVSolutions/IPTV_Online/master/playlists/.
 
 Format
 ======
