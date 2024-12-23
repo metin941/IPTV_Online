@@ -38,14 +38,14 @@ https://ciner-live.daioncdn.net/showtv/showtv.m3u8
 #EXTINF:-1 tvg-name="Kanal 7" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Kanal 7
 https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8
 #EXTINF:-1 tvg-name="TV8" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",TV8
-https://yayin2.canlitv.fun/live/tv-8.stream/playlist.m3u8
+https://yayin2.canlitv.fun/live/tv-8.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889
 #EXTINF:-1 tvg-name="Kanal D" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Kanal D
 https://demiroren-live.daioncdn.net/kanald/kanald.m3u8
 #EXTINF:-1 tvg-name="Beyaz Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Beyaz Tv
 https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8
 #EXTINF:-1 tvg-name="TLC" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",TLC
-https://yayin2.canlitv.fun/live/tlc.stream/playlist.m3u8
+https://yayin2.canlitv.fun/live/tlc.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889
 #EXTINF:-1 tvg-name="Dmax" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Dmax
-https://yayin2.canlitv.fun/live/dmax.stream/playlist.m3u8
+https://yayin2.canlitv.fun/live/dmax.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889
 #EXTINF:-1 tvg-name="Yaban Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Yaban Tv
-https://yayin1.canlitv.fun/canlitv/yabantv.stream/playlist.m3u8
+https://yayin1.canlitv.fun/canlitv/yabantv.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889

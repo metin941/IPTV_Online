@@ -26,12 +26,12 @@ https://en.wikipedia.org/wiki/Television_in_Turkey
 | 17  | Star Tv   | [>](https://dogus-live.daioncdn.net/startv/startv_360p.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 18  | Show Tv     | [>](https://ciner-live.daioncdn.net/showtv/showtv.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 19  | Kanal 7     | [>](https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
-| 20  | TV8     | [>](https://yayin2.canlitv.fun/live/tv-8.stream/playlist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+| 20  | TV8     | [>](https://yayin2.canlitv.fun/live/tv-8.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 21  | Kanal D    | [>](https://demiroren-live.daioncdn.net/kanald/kanald.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 22  | Beyaz Tv     | [>](https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
-| 23  | TLC     | [>](https://yayin2.canlitv.fun/live/tlc.stream/playlist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
-| 24  | Dmax     | [>](https://yayin2.canlitv.fun/live/dmax.stream/playlist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
-| 25  | Yaban Tv    | [>](https://yayin1.canlitv.fun/canlitv/yabantv.stream/playlist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+| 23  | TLC     | [>](https://yayin2.canlitv.fun/live/tlc.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+| 24  | Dmax     | [>](https://yayin2.canlitv.fun/live/dmax.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+| 25  | Yaban Tv    | [>](https://yayin1.canlitv.fun/canlitv/yabantv.stream/playlist.m3u8?hash=06dc186a4fdf27d192021e2077cbb889) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 
 
 <h2>Other</h2>
