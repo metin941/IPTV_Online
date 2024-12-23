@@ -9,8 +9,6 @@ http://cdn.adultiptv.net/latina.m3u8
 http://cdn.adultiptv.net/pov.m3u8
 #EXTINF:-1 tvg-name="Compilation" tvg-logo="https://i.imgur.com/BjRTbrU.png" tvg-id="Ero.bg" group-title="Bulgaria",Compilation
 http://cdn.adultiptv.net/compilation.m3u8
-#EXTINF:-1 tvg-name="Star" tvg-logo="https://i.imgur.com/BjRTbrU.png" tvg-id="Ero.bg" group-title="Bulgaria",Star
-https://cdn.adultiptv.net/pornstar.m3u8
 #EXTINF:-1 tvg-name="BNT1" tvg-logo="https://i.imgur.com/7JU9b5j.png" tvg-id="BNT1.bg" group-title="Bulgaria",BNT1
 
 #EXTINF:-1 tvg-name="bTV" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/BTV_Bulgaria_logo.svg/320px-BTV_Bulgaria_logo.svg.png" tvg-id="bTV.bg" group-title="Bulgaria",bTV
@@ -27,6 +25,20 @@ https://cdn.adultiptv.net/pornstar.m3u8
 
 #EXTINF:-1 tvg-name="City TV Ⓢ" tvg-logo="https://i.imgur.com/BjRTbrU.png" tvg-id="City.bg" group-title="Bulgaria",City TV Ⓢ
 https://tv.city.bg/play/tshls/citytv/index.m3u8
+#EXTINF:-1 tvg-name="Planeta Folk" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Planeta Folk
+https://cdn.stgledai.org:8082/hls/planetafolk/index.m3u8? token=7fb001755d623c6770e6d0ca2212c7651ea48868-8f16de2402fb27c31f8b6a12fc95ebdb-1735002583-1734991783
+#EXTINF:-1 tvg-name="Planeta HD" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Planeta HD
+https://cdn.stgledai.org:8082/hls/planetahd/index.m3u8?token=36d9710874c79e1ddcac6ab5b71c451cd32802df-98c203cc96b6b814e93ffa0df66d8c2a-1735002931-1734992131
+#EXTINF:-1 tvg-name="Diema sport" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Diema sport
+https://cdn.stgledai.org:8082/hls/diemasport/index.m3u8?token=7bbeacad33591565c6e5292b3b895799292ee356-c0e2b61aec7f4a5dfeea7c801031f0f2-1735002985-1734992185
+#EXTINF:-1 tvg-name="Kino Nova" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Kino Nova
+https://cdn.stgledai.org:8082/hls/kino/index.m3u8?token=99f3a8f3f41dee3e1cd8c8b92edbfe1879fdbce2-80e969587f5671a810f3bda75c5648bc-1735003034-1734992234
+#EXTINF:-1 tvg-name="Movie Star" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Movie Star
+https://cdn.stgledai.org:8082/hls/moviestar/index.m3u8?token=a909e40d56d16ab6ca19190c625a273debc529c5-9f9b15b42850495c1ab3dad5d8c67f6b-1735003095-1734992295
+#EXTINF:-1 tvg-name="Fox Life" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Fox Life
+https://cdn.stgledai.org:8082/hls/foxlife/index.m3u8?token=236b2f92e7ccb541820d9af866f6c221939e26b6-7518f99d4159c74825c3be33a985ffb5-1735003132-1734992332
+#EXTINF:-1 tvg-name="Diema" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Diema
+https://cdn.stgledai.org:8082/hls/diema/index.m3u8?token=e15f6ad7ad1aae652c99cdecbd2d0b4d843aed0f-5e5235974dadbe6e218306dd5ee9d637-1735003161-1734992361
 #EXTINF:-1 tvg-name="Euronews Bulgaria Ⓨ" tvg-logo="https://i.imgur.com/RrQVoOg.png" tvg-id="EuroNewsBulgaria.bg" group-title="Bulgaria",Euronews Bulgaria Ⓨ
 https://www.youtube.com/channel/UCU1i6qBMjY9El6q5L2OK8hA/live
 #EXTINF:-1 tvg-name="TV1" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/64/Tv1-new.png" tvg-id="TV1.bg" group-title="Bulgaria",TV1
@@ -63,5 +75,21 @@ https://tv-e-okul00.medya.trt.com.tr/master.m3u8
 https://tv-e-okul01.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-name="TRT EBA Lise" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",TRT EBA Lise
 https://tv-e-okul02.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-name="TLC" tvg-logo="https://i.imgur.com/IebUZx1.png" tvg-id="tlc.tr" group-title="Turkey",TLC
-http://pa9agxjg.rocketcdn.com/tlctv.smil/chunklist_b2328000_sltur.m3u8
+#EXTINF:-1 tvg-name="Star Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Star Tv
+https://dogus-live.daioncdn.net/startv/startv_360p.m3u8
+#EXTINF:-1 tvg-name="Show Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Show Tv
+https://ciner-live.daioncdn.net/showtv/showtv.m3u8
+#EXTINF:-1 tvg-name="Kanal 7" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Kanal 7
+https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8
+#EXTINF:-1 tvg-name="TV8" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",TV8
+https://yayin2.canlitv.fun/live/tv-8.stream/playlist.m3u8
+#EXTINF:-1 tvg-name="Kanal D" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Kanal D
+https://demiroren-live.daioncdn.net/kanald/kanald.m3u8
+#EXTINF:-1 tvg-name="Beyaz Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Beyaz Tv
+https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8
+#EXTINF:-1 tvg-name="TLC" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",TLC
+https://yayin2.canlitv.fun/live/tlc.stream/playlist.m3u8
+#EXTINF:-1 tvg-name="Dmax" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Dmax
+https://yayin2.canlitv.fun/live/dmax.stream/playlist.m3u8
+#EXTINF:-1 tvg-name="Yaban Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="Turkey",Yaban Tv
+https://yayin1.canlitv.fun/canlitv/yabantv.stream/playlist.m3u8
