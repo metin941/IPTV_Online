@@ -2,8 +2,10 @@
 
 import os
 import re
+import requests
+from urllib.parse import urlparse, parse_qs
 
-EPG_LIST = open('epglist.txt',"r") # for a clean code 
+EPG_LIST = open('epglist.txt', "r")  # for a clean code
 
 class Channel:
     def __init__(self, group, md_line):
@@ -21,6 +23,28 @@ class Channel:
         else:
             self.epg = None
 
+        # Extract token if possible
+        self.token = self.extract_token(self.url)
+        if self.token:
+            self.url += f"nimblesessionid={self.token}"
+
+    def extract_token(self, url):
+        """Extract the token from the URL."""
+        try:
+            response = requests.get(url, verify=False)
+            response.raise_for_status()
+            m3u8_data = response.text
+            for line in m3u8_data.splitlines():
+                if "nimblesessionid" in line:
+                    parsed_url = urlparse(line.strip())
+                    query_params = parse_qs(parsed_url.query)
+                    token = query_params.get("nimblesessionid", [None])[0]
+                    return token
+            return None
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching M3U8 playlist: {e}")
+            return None
+
     def to_m3u_line(self):
         if self.epg is None:
             return (f'#EXTINF:-1 tvg-name="{self.name}" tvg-logo="{self.logo}" group-title="{self.group}",{self.name}\n{self.url}')
@@ -30,7 +54,7 @@ class Channel:
 
 def main():
     dir_playlists = 'playlists'
-    if not (os.path.isdir(dir_playlists)):
+    if not os.path.isdir(dir_playlists):
         os.mkdir(dir_playlists)
     with open("playlist.m3u8", "w", encoding='utf-8') as playlist:
         processed_epg_list = ", ".join(EPG_LIST).replace('\n', '')
