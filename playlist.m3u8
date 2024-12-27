@@ -10,9 +10,9 @@ http://cdn.adultiptv.net/pov.m3u8
 #EXTINF:-1 tvg-name="Compilation" tvg-logo="https://i.imgur.com/BjRTbrU.png" tvg-id="Ero.bg" group-title="Bulgaria",Compilation
 http://cdn.adultiptv.net/compilation.m3u8
 #EXTINF:-1 tvg-name="BNT" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",BNT
-https://ymkaya.xyz:48234/tv/bnt1/playlist.m3u8
+https://ymkaya.xyz:48234/tv/bnt1/playlist.m3u8?
 #EXTINF:-1 tvg-name="Kino Nova" tvg-logo="https://i.imgur.com/BjRTbrU.png" group-title="Bulgaria",Kino Nova
-https://ymkaya.xyz:38382/tv/kinonova/playlist.m3u8nimblesessionid=391383
+https://ymkaya.xyz:38382/tv/kinonova/playlist.m3u8?nimblesessionid=393071
 #EXTINF:-1 tvg-name="TRT 1" tvg-logo="https://i.imgur.com/j786OLG.png" tvg-id="TRT1.tr" group-title="Turkey",TRT 1
 https://tv-trt1.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-name="TRT 2 Ⓖ" tvg-logo="https://i.imgur.com/lNWrOE2.png" tvg-id="TRT2.tr" group-title="Turkey",TRT 2 Ⓖ
