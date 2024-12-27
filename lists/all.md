@@ -41,4 +41,5 @@
 | 31  | Kanal 7     | [>](https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 33  | Kanal D    | [>](https://demiroren-live.daioncdn.net/kanald/kanald.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 34  | Beyaz Tv     | [>](https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
-| 34  | Kral Pop Tv     | [>](https://www.youtube.com/watch?v=GuFTuKoXepw) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+| 34  | Kral Pop Tv     | [>](https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+| 34  | Power Tv     | [>](https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
