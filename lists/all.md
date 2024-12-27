@@ -15,8 +15,10 @@
 
 | 11  | City TV | [>](https://tv.city.bg/play/tshls/citytv/index.m3u8) |
 | 12  | The voice | [>](https://bss1.neterra.tv/thevoice/thevoice.m3u8) |
-
-
+| 13  | DSTV | [>](http://46.249.95.140:8081/hls/data.m3u8) |
+| 14  | Magic Tv | [>](https://bss1.neterra.tv/magictv/magictv.m3u8) |
+| 15  | Tiankov tv | [>](https://streamer103.neterra.tv/tiankov-folk/live.m3u8) |
+| 16  | Tiankov orient tv | [>](https://streamer103.neterra.tv/tiankov-orient/live.m3u8) |
 
 | 13  | TRT 1            | [>](https://tv-trt1.medya.trt.com.tr/master.m3u8) | <img height="20" src="https://i.imgur.com/j786OLG.png"/> | TRT1.tr |
 | 14  | TRT 2 Ⓖ         | [>](https://tv-trt2.medya.trt.com.tr/master.m3u8) | <img height="20" src="https://i.imgur.com/lNWrOE2.png"/> | TRT2.tr |
