@@ -59,6 +59,9 @@ def capture_bnt1php_content(url):
             if match:
                 integer = match.group(1)
                 print(f"Extracted integer: {integer}")
+                
+                # Now update the Markdown file with the extracted integer
+                update_md_file('lists/all.md', integer)
             else:
                 print("No matching URL found in the response content.")
         else:
@@ -67,6 +70,21 @@ def capture_bnt1php_content(url):
         print("No request found for bnt1.php.")
     
     driver.quit()
+
+def update_md_file(file_path, new_number):
+    # Read the content of the file
+    with open(file_path, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+
+    # Update all relevant lines with the new number
+    updated_lines = [
+        re.sub(r'https://ymkaya\.xyz:\d+/tv/([^/]+)/playlist.m3u8\?', rf'https://ymkaya.xyz:{new_number}/tv/\1/playlist.m3u8?', line)
+        for line in lines
+    ]
+    
+    # Save the updated content back to the file
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.writelines(updated_lines)
 
 # URL of the page you want to monitor
 url = "https://iptv-bg.com/bnt-1-online/"
