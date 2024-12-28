@@ -28,7 +28,7 @@ jobs:
         pip install requests
 
     # Step 4: Install Google Chrome and ChromeDriver
-    - name: Install Google Chrome and ChromeDriver
+    - name: Install Google Chrome
       run: |
             # Install required dependencies
             sudo apt-get update
@@ -44,6 +44,9 @@ jobs:
             # Log the Chrome version for debugging purposes
             echo "Installed Chrome version: $CHROME_VERSION"
 
+    #Step 5: Install ChromeDriver
+    - name: Install Chromedriver
+      run:
             # Download the correct version of ChromeDriver and save it as chromedriver_linux64.zip
             wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip" -O chromedriver_linux64.zip
 
@@ -57,33 +60,32 @@ jobs:
             ls -l chromedriver
 
             # Move the chromedriver binary to the /usr/local/bin directory and set executable permissions
-            sudo mv chromedriver/chromedriver /usr/local/bin/
+            sudo mv chromedriver /usr/local/bin/
             sudo chmod +x /usr/local/bin/chromedriver
 
-
-    # Step 5: Verify ChromeDriver installation
+    # Step 6: Verify ChromeDriver installation
     - name: Verify ChromeDriver installation
       run: |
         chromedriver --version
         google-chrome --version
 
-    # Step 6: Run the first script with headless mode options for Chrome
+    # Step 7: Run the first script with headless mode options for Chrome
     - name: Extract port number for BG TV
       run: |
         echo "Running first file..."
         python get_bg_portnum.py
 
-    # Step 7: Wait for a brief pause
+    # Step 8: Wait for a brief pause
     - name: Wait briefly
       run: sleep 60 # Pause for 1 minute
 
-    # Step 8: Run the second script
+    # Step 9: Run the second script
     - name: Extract tokens for BG TV and renew playlist
       run: |
         echo "Running second file..."
         python make_playlist.py
 
-    # Step 9: Commit and push changes
+    # Step 10: Commit and push changes
     - name: Configure Git
       run: |
         git config --global user.name "IPTVSolutions"
