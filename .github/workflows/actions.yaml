@@ -20,12 +20,15 @@ jobs:
       with:
         python-version: '3.13' # Specify your Python version, e.g., '3.9'
 
-        # Step 3: Turn off firewall
+    # Step 3: Turn off firewall
     - name: Disable Firewall
       run: |
         sudo ufw disable
         echo "Firewall has been disabled."
 
+    - name: Set permissions
+      run: chmod +x *.py
+      
     # Step 3: Install required Python libraries
     - name: Install Python libraries
       run: |
