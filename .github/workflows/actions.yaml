@@ -27,23 +27,36 @@ jobs:
         pip install selenium
         pip install requests
 
-    # Step 4: Run the first script
+    # Step 4: Install Chrome and Chromedriver
+    - name: Set up Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
+
+    # Step 6: Run the first script
     - name: Extract port number for BG TV
       run: |
         echo "Running first file..."
         python get_bg_portnum.py
 
-    # Step 5: Wait for a brief pause
+    # Step 7: Wait for a brief pause
     - name: Wait briefly
       run: sleep 60 # Pause for 1 minute
 
-    # Step 6: Run the second script
+    # Step 8: Run the second script
     - name: Extract tokens for BG TV and renew playlist
       run: |
         echo "Running second file..."
         python make_playlist.py
 
-    # Step 7: Commit and push changes
+    # Step 9: Commit and push changes
     - name: Configure Git
       run: |
         git config --global user.name "IPTVSolutions"
