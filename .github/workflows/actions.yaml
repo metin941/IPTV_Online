@@ -1,4 +1,4 @@
-name: Run Files Sequentially
+name: Run Files Sequentially on Windows
 
 on:
   workflow_dispatch: # Allows manual triggering of the workflow
@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-files:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest # Use a Windows runner
 
     steps:
     # Step 1: Check out the repository
@@ -18,70 +18,45 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.13' # Specify your Python version, e.g., '3.9'
+        python-version: '3.13' # Specify your Python version
 
-    # Step 3: Turn off firewall
-    - name: Disable Firewall
+    # Step 3: Turn off firewall (Windows-specific)
+    - name: Disable Windows Firewall
       run: |
-        sudo ufw disable
+        netsh advfirewall set allprofiles state off
         echo "Firewall has been disabled."
 
-    - name: Set permissions
-      run: chmod +x *.py
-
-    # Step 3: Install required Python libraries
+    # Step 4: Install required Python libraries
     - name: Install Python libraries
       run: |
         python -m pip install --upgrade pip
-        pip install selenium
-        pip install requests
-        pip install urllib3
-        pip install regex
+        pip install selenium requests urllib3 regex
 
-    # Step 4: Install Google Chrome and ChromeDriver
+    # Step 5: Install Google Chrome and ChromeDriver
     - name: Install Google Chrome
       run: |
-        # Install required dependencies
-        sudo apt-get update
-        sudo apt-get install -y wget unzip curl libx11-dev libx11-xcb1 libxcomposite1 libxrandr2 libgbm1 libasound2
+        # Download Google Chrome for Windows
+        curl -LO "https://dl.google.com/tag/s/appguid={8A69D345-D564-463c-AFF1-A69D9E530F96}&iid={5A1A25C5-8888-4BE7-8A13-FE7681F9E8E3}&lang=en&browser=5&usagestats=0&appname=Google Chrome&needsadmin=false/standalone_installer.exe"
+        start /wait standalone_installer.exe /silent /install
 
-        # Install Google Chrome
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
-
-    # Step 5: Install ChromeDriver
     - name: Install ChromeDriver
       run: |
+        # Get the installed Chrome version
+        $chrome_version = (Get-Command "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe").FileVersion
+        echo "Installed Chrome version: $chrome_version"
 
-        # Get the full version of Chrome (including major, minor, and patch versions)
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
-
-        # Log the Chrome version for debugging purposes
-        echo "Installed Chrome version: $CHROME_VERSION"
-
-        # Download the correct version of ChromeDriver and save it as chromedriver_linux64.zip
-        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip" -O chromedriver_linux64.zip
-
-        # Check if the file is downloaded correctly (optional debugging step)
-        ls -l chromedriver_linux64.zip
-
-        # Unzip the downloaded ChromeDriver ZIP file
-        unzip chromedriver_linux64.zip -d chromedriver
-
-        # List the contents of the extracted folder for debugging
-        ls -l chromedriver
-
-        # Move the chromedriver binary to the /usr/local/bin directory and set executable permissions
-        sudo mv chromedriver /usr/local/bin/
-        sudo chmod +x /usr/local/bin/chromedriver
+        # Download the matching ChromeDriver
+        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/chrome-for-testing-public/$chrome_version/chromedriver_win32.zip" -OutFile chromedriver_win32.zip
+        Expand-Archive chromedriver_win32.zip -DestinationPath C:\chromedriver
+        set PATH=%PATH%;C:\chromedriver
 
     # Step 6: Verify ChromeDriver installation
     - name: Verify ChromeDriver installation
       run: |
         chromedriver --version
-        google-chrome --version
+        "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --version
 
-    # Step 7: Run the first script with headless mode options for Chrome
+    # Step 7: Run the first script
     - name: Extract port number for BG TV
       run: |
         echo "Running first file..."
@@ -89,12 +64,13 @@ jobs:
 
     # Step 8: Wait for a brief pause
     - name: Wait briefly
-      run: sleep 3 # Pause for 1 minute
+      run: timeout 3
 
     # Step 9: Run the second script
     - name: Extract tokens for BG TV and renew playlist
       run: |
-        PYTHONDEBUG=1 python make_playlist.py
+        echo "Running second file..."
+        python make_playlist.py
 
     # Step 10: Commit and push changes
     - name: Configure Git
@@ -103,14 +79,13 @@ jobs:
         git config --global user.email "mmmw@abv.bg"
 
     - name: Commit changes
-      run: | 
-        git add -A :!chromedriver_linux64.zip :!google-chrome-stable_current_amd64.deb 
+      run: |
+        git add -A
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
-    
-    # Step 12: Push changes
+
+    # Step 11: Push changes
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.SOME_SECRET }}
         branch: main
-
