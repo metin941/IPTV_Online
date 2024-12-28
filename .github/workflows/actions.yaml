@@ -27,7 +27,6 @@ jobs:
         pip install selenium
         pip install requests
         pip install urllib3
-        pip install pycopy-urllib.parse
         pip install regex
 
     # Step 4: Install Google Chrome and ChromeDriver
