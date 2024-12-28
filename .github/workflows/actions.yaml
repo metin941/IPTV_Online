@@ -37,11 +37,13 @@ jobs:
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
         
-        # Get the version of the installed Chrome
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+
+        # Get the full version of Chrome (including major, minor, and patch versions)
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
 
         # Log the Chrome version for debugging purposes
         echo "Installed Chrome version: $CHROME_VERSION"
+
 
         # Download and install the correct version of ChromeDriver
         wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip"
