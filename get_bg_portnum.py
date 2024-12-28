@@ -6,6 +6,9 @@ import time
 def capture_bnt1php_content(url):
     options = Options()
     options.headless = True  # Run in headless mode
+    options.add_argument('--no-sandbox')  # Disable sandboxing for CI environments
+    options.add_argument('--disable-dev-shm-usage')  # Prevent errors related to shared memory
+    options.add_argument('--disable-gpu')  # Disable GPU acceleration (not needed in CI)
     
     # Start a new session with Selenium
     driver = webdriver.Chrome(options=options)
