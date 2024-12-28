@@ -78,7 +78,7 @@ jobs:
 
     # Step 8: Wait for a brief pause
     - name: Wait briefly
-      run: sleep 10 # Pause for 1 minute
+      run: sleep 3 # Pause for 1 minute
 
     # Step 9: Run the second script
     - name: Extract tokens for BG TV and renew playlist
