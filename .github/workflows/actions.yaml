@@ -46,6 +46,12 @@ jobs:
         # Fetch the ChromeDriver version based on Chrome version
         CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
 
+        # If the exact version is not available, try the previous version
+        if [[ $CHROMEDRIVER_VERSION == "" ]]; then
+          echo "Exact version not found, falling back to previous version..."
+          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE")
+        fi
+
         # Log the ChromeDriver version URL for debugging
         echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
 
