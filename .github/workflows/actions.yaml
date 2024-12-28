@@ -41,15 +41,15 @@ jobs:
     # Step 5: Install ChromeDriver
     - name: Install ChromeDriver
       run: |
+
         # Get the full version of Chrome (including major, minor, and patch versions)
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
 
         # Log the Chrome version for debugging purposes
         echo "Installed Chrome version: $CHROME_VERSION"
 
         # Download the correct version of ChromeDriver and save it as chromedriver_linux64.zip
-        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-        wget "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip" -O chromedriver_linux64.zip
+        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip" -O chromedriver_linux64.zip
 
         # Check if the file is downloaded correctly (optional debugging step)
         ls -l chromedriver_linux64.zip
@@ -61,7 +61,7 @@ jobs:
         ls -l chromedriver
 
         # Move the chromedriver binary to the /usr/local/bin directory and set executable permissions
-        sudo mv chromedriver/chromedriver /usr/local/bin/
+        sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
 
     # Step 6: Verify ChromeDriver installation
@@ -86,13 +86,12 @@ jobs:
         echo "Running second file..."
         python make_playlist.py
 
-    # Step 10: Configure Git
+    # Step 10: Commit and push changes
     - name: Configure Git
       run: |
         git config --global user.name "IPTVSolutions"
         git config --global user.email "mmmw@abv.bg"
 
-    # Step 11: Commit changes
     - name: Commit changes
       run: |
         git add .
@@ -104,3 +103,4 @@ jobs:
         PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         git push https://IPTVSolutions:${{ secrets.PAT_TOKEN }}@github.com/IPTVSolutions/IPTV_Online.git
+
