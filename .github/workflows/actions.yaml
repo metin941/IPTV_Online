@@ -27,48 +27,51 @@ jobs:
         pip install selenium
         pip install requests
 
-    # Step 4: Install the specific version of Google Chrome
-    - name: Install specific version of Google Chrome
+    # Step 4: Install Google Chrome and ChromeDriver
+    - name: Install Google Chrome and ChromeDriver
       run: |
-        # Define the version you need for both Chrome and ChromeDriver
-        CHROME_VERSION="114.0.5735.90"
-        
-        # Download and install Google Chrome that matches the ChromeDriver version
-        wget https://dl.google.com/linux/direct/google-chrome-stable_${CHROME_VERSION}_amd64.deb
-        sudo dpkg -i google-chrome-stable_${CHROME_VERSION}_amd64.deb || sudo apt-get install -y -f
+        sudo apt-get update
+        sudo apt-get install -y wget unzip curl libx11-dev libx11-xcb1 libxcomposite1 libxrandr2 libgbm1 libasound2
 
-    # Step 5: Download and install ChromeDriver that matches Chrome version
-    - name: Download matching ChromeDriver
-      run: |
-        # Download the matching version of ChromeDriver
-        wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip -O chromedriver_linux64.zip
+        # Install Google Chrome
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
+        
+        # Get the version of the installed Chrome
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+
+        # Log the Chrome version for debugging purposes
+        echo "Installed Chrome version: $CHROME_VERSION"
+
+        # Download and install the correct version of ChromeDriver
+        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
 
-    # Step 6: Verify Chrome and ChromeDriver installation
-    - name: Verify Chrome and ChromeDriver installation
+    # Step 5: Verify ChromeDriver installation
+    - name: Verify ChromeDriver installation
       run: |
-        google-chrome --version
         chromedriver --version
+        google-chrome --version
 
-    # Step 7: Run the first script with headless mode options for Chrome
+    # Step 6: Run the first script with headless mode options for Chrome
     - name: Extract port number for BG TV
       run: |
         echo "Running first file..."
         python get_bg_portnum.py
 
-    # Step 8: Wait for a brief pause
+    # Step 7: Wait for a brief pause
     - name: Wait briefly
       run: sleep 60 # Pause for 1 minute
 
-    # Step 9: Run the second script
+    # Step 8: Run the second script
     - name: Extract tokens for BG TV and renew playlist
       run: |
         echo "Running second file..."
         python make_playlist.py
 
-    # Step 10: Commit and push changes
+    # Step 9: Commit and push changes
     - name: Configure Git
       run: |
         git config --global user.name "IPTVSolutions"
