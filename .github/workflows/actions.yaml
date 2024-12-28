@@ -93,8 +93,8 @@ jobs:
         git config --global user.email "mmmw@abv.bg"
 
     - name: Commit changes
-      run: |
-        git add .
+      run: | 
+        git add -A :!chromedriver_linux64.zip :!google-chrome-stable_current_amd64.deb 
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
     
     # Step 12: Push changes
