@@ -4,6 +4,7 @@ import os
 import re
 import requests
 from urllib.parse import urlparse, parse_qs
+import urllib3
 
 EPG_LIST = open('epglist.txt', "r")  # for a clean code
 
@@ -31,6 +32,7 @@ class Channel:
     def extract_token(self, url):
         """Extract the token from the URL."""
         try:
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
             response = requests.get(url, verify=False)
             response.raise_for_status()
             m3u8_data = response.text
