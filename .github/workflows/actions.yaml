@@ -37,12 +37,16 @@ jobs:
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
         
-        # Fetch the latest ChromeDriver from Chrome for Testing
-        LATEST_CHROMEDRIVER_URL=$(curl -s https://googlechromelabs.github.io/chrome-for-testing/ | grep -oP 'https://chromedriver.storage.googleapis.com/.+?chromedriver_linux64.zip' | head -n 1)
-        echo "Latest ChromeDriver URL: $LATEST_CHROMEDRIVER_URL"
+        # Fetch the latest version of Chrome from the API
+        CHROME_VERSION=$(curl -s https://googlechromelabs.github.io/chrome-for-testing/latest-versions-per-milestone.json | jq -r '.["Stable"] | .version')
+        echo "Latest Chrome Version: $CHROME_VERSION"
         
-        # Download and install the latest version of ChromeDriver
-        wget $LATEST_CHROMEDRIVER_URL -O chromedriver_linux64.zip
+        # Fetch the corresponding ChromeDriver version from the API
+        CHROMEDRIVER_VERSION=$(curl -s https://googlechromelabs.github.io/chrome-for-testing/latest-versions-per-milestone.json | jq -r ".[$CHROME_VERSION] | .chromedriver")
+        echo "ChromeDriver Version: $CHROMEDRIVER_VERSION"
+
+        # Download the latest ChromeDriver using the obtained version
+        wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -O chromedriver_linux64.zip
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
