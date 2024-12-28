@@ -97,7 +97,9 @@ jobs:
         git add .
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
     
-    - name: push changes to main 
-      run: |
-        git push origin main
+    # Step 12: Push changes
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ secrets.PAT_TOKEN }}
 
