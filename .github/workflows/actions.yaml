@@ -41,15 +41,15 @@ jobs:
     # Step 5: Install ChromeDriver
     - name: Install ChromeDriver
       run: |
-
         # Get the full version of Chrome (including major, minor, and patch versions)
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
 
         # Log the Chrome version for debugging purposes
         echo "Installed Chrome version: $CHROME_VERSION"
 
         # Download the correct version of ChromeDriver and save it as chromedriver_linux64.zip
-        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip" -O chromedriver_linux64.zip
+        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+        wget "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip" -O chromedriver_linux64.zip
 
         # Check if the file is downloaded correctly (optional debugging step)
         ls -l chromedriver_linux64.zip
@@ -61,7 +61,7 @@ jobs:
         ls -l chromedriver
 
         # Move the chromedriver binary to the /usr/local/bin directory and set executable permissions
-        sudo mv chromedriver /usr/local/bin/
+        sudo mv chromedriver/chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
 
     # Step 6: Verify ChromeDriver installation
@@ -78,7 +78,7 @@ jobs:
 
     # Step 8: Wait for a brief pause
     - name: Wait briefly
-      run: sleep 60 # Pause for 1 minute
+      run: sleep 10 # Pause for 1 minute
 
     # Step 9: Run the second script
     - name: Extract tokens for BG TV and renew playlist
@@ -86,19 +86,21 @@ jobs:
         echo "Running second file..."
         python make_playlist.py
 
-    # Step 10: Commit and push changes
+    # Step 10: Configure Git
     - name: Configure Git
       run: |
         git config --global user.name "IPTVSolutions"
         git config --global user.email "mmmw@abv.bg"
 
+    # Step 11: Commit changes
     - name: Commit changes
       run: |
         git add .
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
 
+    # Step 12: Push changes using PAT
     - name: Push changes
       env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        git push
+        git push https://IPTVSolutions:${{ secrets.PAT_TOKEN }}@github.com/IPTVSolutions/IPTV_Online.git
