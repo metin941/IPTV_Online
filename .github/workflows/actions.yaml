@@ -28,7 +28,7 @@ jobs:
         pip install requests
 
     # Step 4: Install Chrome and ChromeDriver
-    - name: Set up Chrome and ChromeDriver
+    - name: install Google Chrome
       run: |
         sudo apt-get update
         sudo apt-get install -y wget unzip curl
