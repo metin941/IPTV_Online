@@ -27,26 +27,41 @@ jobs:
         pip install selenium
         pip install requests
 
-    # Step 4: Install Google Chrome
+    # Step 4: Install Google Chrome and ChromeDriver
     - name: Install Google Chrome
       run: |
+        # Install required dependencies
         sudo apt-get update
         sudo apt-get install -y wget unzip curl libx11-dev libx11-xcb1 libxcomposite1 libxrandr2 libgbm1 libasound2
 
+        # Install Google Chrome
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
-
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-        echo "Installed Chrome version: $CHROME_VERSION"
 
     # Step 5: Install ChromeDriver
     - name: Install ChromeDriver
       run: |
-        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-        wget "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip" -O chromedriver_linux64.zip
+      
+        # Get the full version of Chrome (including major, minor, and patch versions)
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
 
+        # Log the Chrome version for debugging purposes
+        echo "Installed Chrome version: $CHROME_VERSION"
+
+        # Download the correct version of ChromeDriver and save it as chromedriver_linux64.zip
+        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip" -O chromedriver_linux64.zip
+
+        # Check if the file is downloaded correctly (optional debugging step)
+        ls -l chromedriver_linux64.zip
+
+        # Unzip the downloaded ChromeDriver ZIP file
         unzip chromedriver_linux64.zip -d chromedriver
-        sudo mv chromedriver/chromedriver /usr/local/bin/chromedriver
+
+        # List the contents of the extracted folder for debugging
+        ls -l chromedriver
+
+        # Move the chromedriver binary to the /usr/local/bin directory and set executable permissions
+        sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
 
     # Step 6: Verify ChromeDriver installation
@@ -55,7 +70,7 @@ jobs:
         chromedriver --version
         google-chrome --version
 
-    # Step 7: Run the first script
+    # Step 7: Run the first script with headless mode options for Chrome
     - name: Extract port number for BG TV
       run: |
         echo "Running first file..."
