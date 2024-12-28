@@ -27,18 +27,26 @@ jobs:
         pip install selenium
         pip install requests
 
-    # Step 4: Install Chrome and Chromedriver
-    - name: Set up Chrome
+    # Step 4: Install Chrome and ChromeDriver
+    - name: Set up Chrome and ChromeDriver
       run: |
         sudo apt-get update
         sudo apt-get install -y wget unzip
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
+        sudo apt-get install -y chromium-chromedriver
         CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-        wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+        DRIVER_URL=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        wget "https://chromedriver.storage.googleapis.com/$DRIVER_URL/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
+
+    # Step 5: Verify ChromeDriver
+    - name: Verify ChromeDriver installation
+      run: |
+        chromedriver --version
+        google-chrome --version
 
     # Step 6: Run the first script
     - name: Extract port number for BG TV
