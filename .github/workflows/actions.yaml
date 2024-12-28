@@ -1,0 +1,61 @@
+name: Run Files Sequentially
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+  schedule:
+    - cron: "0 * * * *" # Runs every 1 hour
+
+jobs:
+  run-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Check out the repository
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9' # Specify your Python version, e.g., '3.9'
+
+    # Step 3: Install required Python libraries
+    - name: Install Python libraries
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium
+        pip install requests
+
+    # Step 4: Run the first script
+    - name: Extract port number for BG TV
+      run: |
+        echo "Running first file..."
+        python get_bg_portnum.py
+
+    # Step 5: Wait for a brief pause
+    - name: Wait briefly
+      run: sleep 60 # Pause for 1 minute
+
+    # Step 6: Run the second script
+    - name: Extract tokens for BG TV and renew playlist
+      run: |
+        echo "Running second file..."
+        python make_playlist.py
+
+    # Step 7: Commit and push changes
+    - name: Configure Git
+      run: |
+        git config --global user.name "IPTVSolutions"
+        git config --global user.email "mmmw@abv.bg"
+
+    - name: Commit changes
+      run: |
+        git add .
+        git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
+
+    - name: Push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git push
