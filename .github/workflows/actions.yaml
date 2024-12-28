@@ -97,9 +97,10 @@ jobs:
         git add .
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
     
-# Step 12: Push changes 
-    - name: Push changes 
-      env: GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }} 
-      run: | 
-      git push origin HEAD:master
+    # Step 12: Push changes
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ secrets.SOME_SECRET }}
+        branch: main
 
