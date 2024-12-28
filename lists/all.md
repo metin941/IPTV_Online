@@ -3,15 +3,15 @@
 | #   | Channel        | Link  | Logo | EPG id |
 |:---:|:--------------:|:-----:|:----:|:------:|
 
-| 1   | BNT | [>](https://ymkaya.xyz:13129/tv/bnt1/playlist.m3u8?) |
-| 2   | Kino Nova | [>](https://ymkaya.xyz:13129/tv/kinonova/playlist.m3u8?) |
-| 3   | Diema Family | [>](https://ymkaya.xyz:13129/tv/diemafamily/playlist.m3u8?) |
-| 4   | Diema | [>](https://ymkaya.xyz:13129/tv/diema/playlist.m3u8?) ||
-| 5   | National Geographic | [>](https://ymkaya.xyz:13129/tv/natgeo/playlist.m3u8?) |
-| 6   | NatGeo Wild | [>](https://ymkaya.xyz:13129/tv/natgeowild/playlist.m3u8?) |
-| 7   | Discovery Tv | [>](https://ymkaya.xyz:13129/tv/discovery/playlist.m3u8?) |
-| 8   | B Cinema | [>](https://ymkaya.xyz:13129/tv/btvcinema/playlist.m3u8?) |
-| 9   | BTV Action | [>](https://ymkaya.xyz:13129/tv/btvaction/playlist.m3u8?) |
+| 1   | BNT | [>](https://ymkaya.xyz:13210/tv/bnt1/playlist.m3u8?) |
+| 2   | Kino Nova | [>](https://ymkaya.xyz:13210/tv/kinonova/playlist.m3u8?) |
+| 3   | Diema Family | [>](https://ymkaya.xyz:13210/tv/diemafamily/playlist.m3u8?) |
+| 4   | Diema | [>](https://ymkaya.xyz:13210/tv/diema/playlist.m3u8?) ||
+| 5   | National Geographic | [>](https://ymkaya.xyz:13210/tv/natgeo/playlist.m3u8?) |
+| 6   | NatGeo Wild | [>](https://ymkaya.xyz:13210/tv/natgeowild/playlist.m3u8?) |
+| 7   | Discovery Tv | [>](https://ymkaya.xyz:13210/tv/discovery/playlist.m3u8?) |
+| 8   | B Cinema | [>](https://ymkaya.xyz:13210/tv/btvcinema/playlist.m3u8?) |
+| 9   | BTV Action | [>](https://ymkaya.xyz:13210/tv/btvaction/playlist.m3u8?) |
 
 | 11  | City TV | [>](https://tv.city.bg/play/tshls/citytv/index.m3u8) |
 | 12  | The voice | [>](https://bss1.neterra.tv/thevoice/thevoice.m3u8) |
