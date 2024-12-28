@@ -9,7 +9,9 @@ def capture_bnt1php_content(url):
     options.add_argument('--no-sandbox')  # Disable sandboxing for CI environments
     options.add_argument('--disable-dev-shm-usage')  # Prevent errors related to shared memory
     options.add_argument('--disable-gpu')  # Disable GPU acceleration (not needed in CI)
-    
+    options.add_argument('--remote-debugging-port=9222')  # Enable remote debugging
+    options.add_argument('--window-size=1920,1080')  # Set window size to avoid issues with rendering
+
     # Start a new session with Selenium
     driver = webdriver.Chrome(options=options)
     
