@@ -31,12 +31,24 @@ jobs:
     - name: Set up Chrome and ChromeDriver
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget unzip
+        sudo apt-get install -y wget unzip curl
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -y -f
         sudo apt-get install -y chromium-chromedriver
+
+        # Get installed Chrome version
         CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+
+        # Log the version for debugging purposes
+        echo "Installed Chrome version: $CHROME_VERSION"
+
+        # Fetch the correct version of ChromeDriver based on Chrome version
         DRIVER_URL=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+
+        # Log the driver URL for debugging purposes
+        echo "ChromeDriver URL: https://chromedriver.storage.googleapis.com/$DRIVER_URL/chromedriver_linux64.zip"
+
+        # Download and install the correct version of ChromeDriver
         wget "https://chromedriver.storage.googleapis.com/$DRIVER_URL/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
