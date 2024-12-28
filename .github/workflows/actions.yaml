@@ -28,7 +28,7 @@ jobs:
 
     - name: Set permissions
       run: chmod +x *.py
-      
+
     # Step 3: Install required Python libraries
     - name: Install Python libraries
       run: |
@@ -94,8 +94,7 @@ jobs:
     # Step 9: Run the second script
     - name: Extract tokens for BG TV and renew playlist
       run: |
-        echo "Running second file..."
-        python make_playlist.py
+        PYTHONDEBUG=1 python make_playlist.py
 
     # Step 10: Commit and push changes
     - name: Configure Git
