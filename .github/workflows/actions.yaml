@@ -97,10 +97,8 @@ jobs:
         git add .
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
     
-    - name: Push changes
-  env:
-    PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-  run: |
-    git remote set-url origin https://<PAT>:${{ secrets.PAT_TOKEN }}@github.com/IPTVSolutions/IPTV_Online.git
-    git push origin main
+    - name: push changes to main 
+      run: |
+        git remote set-url origin https://<PAT>:${{ secrets.PAT_TOKEN }}@github.com/IPTVSolutions/IPTV_Online.git
+        git push origin main
 
