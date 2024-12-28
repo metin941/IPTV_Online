@@ -46,9 +46,11 @@ jobs:
 
 
         # Download and install the correct version of ChromeDriver
-        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64"
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
+        wget "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chrome-linux64.zip"
+        unzip chromedriver_linux64.zip -d chromedriver
+        
+        # Move the chromedriver binary to the /usr/local/bin directory and set executable permissions
+        sudo mv chromedriver/chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
 
     # Step 5: Verify ChromeDriver installation
