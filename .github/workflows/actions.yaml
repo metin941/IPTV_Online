@@ -89,13 +89,20 @@ jobs:
     # Step 10: Commit and push changes
     - name: Configure Git
       run: |
-        git config --global user.name "IPTVSolutions"
+        git config --global user.name "mmmw"
         git config --global user.email "mmmw@abv.bg"
 
     - name: Commit changes
       run: |
         git add .
         git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
+    
+    #Show pat token 
+    - name: Use SHOW_TOKEN
+      env:
+        SHOW_TOKEN: ${{ secrets.PAT_TOKEN }}
+      run: |
+        echo "Using PAT_TOKEN: $PAT_TOKEN"
 
     # Step 12: Push changes using PAT
     - name: Push changes
