@@ -36,8 +36,11 @@ jobs:
     - name: Install Google Chrome
       run: |
         # Download Google Chrome for Windows
-        curl -LO "https://dl.google.com/tag/s/appguid={8A69D345-D564-463c-AFF1-A69D9E530F96}&iid={5A1A25C5-8888-4BE7-8A13-FE7681F9E8E3}&lang=en&browser=5&usagestats=0&appname=Google Chrome&needsadmin=false/standalone_installer.exe"
-        start /wait standalone_installer.exe /silent /install
+        curl -LO "https://dl.google.com/chrome/install/standalone/ChromeSetup.exe"
+
+        # Install Google Chrome silently
+        Start-Process -FilePath "./ChromeSetup.exe" -ArgumentList "/silent", "/install" -Wait
+
 
     - name: Install ChromeDriver
       run: |
