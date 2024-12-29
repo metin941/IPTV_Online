@@ -33,11 +33,39 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium requests urllib3 regex
 
-      # Step 5: Install Google Chrome
-      - name: Install Google Chrome
-        run: |
-          curl -LO "https://dl.google.com/chrome/install/latest/chrome_installer.exe"
-          Start-Process -FilePath "./chrome_installer.exe" -ArgumentList "/silent", "/install" -Wait
+          - name: Install Google Chrome
+          run: |
+            $LocalTempDir = $env:TEMP; 
+            $ChromeInstaller = "ChromeInstaller.exe"; 
+            
+            # Download the Chrome installer
+            (new-object System.Net.WebClient).DownloadFile('http://dl.google.com/chrome/install/375.126/chrome_installer.exe', "$LocalTempDir\$ChromeInstaller"); 
+            
+            # Run the installer silently
+            & "$LocalTempDir\$ChromeInstaller" /silent /install; 
+            
+            # Monitor the installation process
+            $Process2Monitor = "ChromeInstaller"; 
+            Do { 
+                $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; 
+                If ($ProcessesFound) { 
+                    "Still running: $($ProcessesFound -join ', ')" | Write-Host; 
+                    Start-Sleep -Seconds 2 
+                } else { 
+                    # Remove installer after installation is complete
+                    rm "$LocalTempDir\$ChromeInstaller" -ErrorAction SilentlyContinue -Verbose 
+                } 
+            } Until (!$ProcessesFound)
+            
+        - name: Verify Chrome Installation
+          run: |
+            # Verify if Chrome was installed successfully
+            if (Get-Command "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ErrorAction SilentlyContinue) {
+              Write-Host "Google Chrome installed successfully."
+            } else {
+              Write-Host "Google Chrome installation failed."
+              exit 1
+            }
 
       # Step 6: Install ChromeDriver
       - name: Install ChromeDriver
