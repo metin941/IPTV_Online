@@ -3,99 +3,93 @@ name: Run Files Sequentially on Windows
 on:
   workflow_dispatch: # Allows manual triggering of the workflow
   schedule:
-    - cron: "0 * * * *" # Runs every 1 hour
+    - cron: "0 * * * *" # Runs every hour
 
 jobs:
   run-files:
     runs-on: windows-latest # Use a Windows runner
 
     steps:
-      
+      # Step 1: Print environment details
       - name: Print Environment Variables
         run: |
           echo ImageOS: ${{ runner.os }}
           echo Version Details:
           systeminfo
 
-    # Step 1: Check out the repository
-    - name: Check out repository
-      uses: actions/checkout@v3
+      # Step 2: Check out the repository
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    # Step 2: Set up Python environment
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13' # Specify your Python version
+      # Step 3: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' # Specify a stable Python version
 
-    # Step 3: Turn off firewall (Windows-specific)
-    - name: Disable Windows Firewall
-      run: |
-        netsh advfirewall set allprofiles state off
-        echo "Firewall has been disabled."
+      # Step 4: Install required Python libraries
+      - name: Install Python libraries
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium requests urllib3 regex
 
-    # Step 4: Install required Python libraries
-    - name: Install Python libraries
-      run: |
-        python -m pip install --upgrade pip
-        pip install selenium requests urllib3 regex
+      # Step 5: Install Google Chrome
+      - name: Install Google Chrome
+        run: |
+          curl -LO "https://dl.google.com/chrome/install/standalone/ChromeSetup.exe"
+          Start-Process -FilePath "./ChromeSetup.exe" -ArgumentList "/silent", "/install" -Wait
 
-    # Step 5: Install Google Chrome and ChromeDriver
-    - name: Install Google Chrome
-      run: |
-        # Download Google Chrome for Windows
-        curl -LO "https://dl.google.com/chrome/install/standalone/ChromeSetup.exe"
+      # Step 6: Install ChromeDriver
+      - name: Install ChromeDriver
+        run: |
+          $chrome_version = (Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome").Version
+          echo "Installed Chrome version: $chrome_version"
 
-        # Install Google Chrome silently
-        Start-Process -FilePath "./ChromeSetup.exe" -ArgumentList "/silent", "/install" -Wait
+          $chrome_major_version = $chrome_version.Split('.')[0]
+          $driver_url = "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_" + $chrome_major_version
+          $driver_version = Invoke-RestMethod -Uri $driver_url
 
+          Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$driver_version/chromedriver_win32.zip" -OutFile chromedriver.zip
+          Expand-Archive -Path chromedriver.zip -DestinationPath C:\chromedriver
+          set PATH=%PATH%;C:\chromedriver
 
-    - name: Install ChromeDriver
-      run: |
-        # Get the installed Chrome version
-        $chrome_version = (Get-Command "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe").FileVersion
-        echo "Installed Chrome version: $chrome_version"
+      # Step 7: Verify ChromeDriver installation
+      - name: Verify ChromeDriver installation
+        run: |
+          chromedriver --version
+          "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --version
 
-        # Download the matching ChromeDriver
-        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/chrome-for-testing-public/$chrome_version/chromedriver_win32.zip" -OutFile chromedriver_win32.zip
-        Expand-Archive chromedriver_win32.zip -DestinationPath C:\chromedriver
-        set PATH=%PATH%;C:\chromedriver
+      # Step 8: Run the first script
+      - name: Extract port number for BG TV
+        run: |
+          echo "Running first file..."
+          python get_bg_portnum.py
 
-    # Step 6: Verify ChromeDriver installation
-    - name: Verify ChromeDriver installation
-      run: |
-        chromedriver --version
-        "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --version
+      # Step 9: Wait briefly
+      - name: Wait briefly
+        run: timeout 3
 
-    # Step 7: Run the first script
-    - name: Extract port number for BG TV
-      run: |
-        echo "Running first file..."
-        python get_bg_portnum.py
+      # Step 10: Run the second script
+      - name: Extract tokens for BG TV and renew playlist
+        run: |
+          echo "Running second file..."
+          python make_playlist.py
 
-    # Step 8: Wait for a brief pause
-    - name: Wait briefly
-      run: timeout 3
+      # Step 11: Configure Git
+      - name: Configure Git
+        run: |
+          git config --global user.name "mmmw"
+          git config --global user.email "mmmw@abv.bg"
 
-    # Step 9: Run the second script
-    - name: Extract tokens for BG TV and renew playlist
-      run: |
-        echo "Running second file..."
-        python make_playlist.py
+      # Step 12: Commit changes
+      - name: Commit changes
+        run: |
+          git add -A
+          git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
 
-    # Step 10: Commit and push changes
-    - name: Configure Git
-      run: |
-        git config --global user.name "mmmw"
-        git config --global user.email "mmmw@abv.bg"
-
-    - name: Commit changes
-      run: |
-        git add -A
-        git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
-
-    # Step 11: Push changes
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0
-      with:
-        github_token: ${{ secrets.SOME_SECRET }}
-        branch: main
+      # Step 13: Push changes
+      - name: Push changes
+        uses: github-actions-x/commit@v2
+        with:
+          github_token: ${{ secrets.SOME_SECRET }}
+          branch: main
