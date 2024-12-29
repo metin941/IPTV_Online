@@ -89,7 +89,8 @@ jobs:
 
       # Step 13: Push changes
       - name: Push changes
-        uses: github-actions-x/commit@v2
-        with:
-          github_token: ${{ secrets.SOME_SECRET }}
-          branch: main
+        run: |
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
