@@ -33,41 +33,43 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium requests urllib3 regex
 
-          - name: Install Google Chrome
-          run: |
-            $LocalTempDir = $env:TEMP; 
-            $ChromeInstaller = "ChromeInstaller.exe"; 
-            
-            # Download the Chrome installer
-            (new-object System.Net.WebClient).DownloadFile('http://dl.google.com/chrome/install/375.126/chrome_installer.exe', "$LocalTempDir\$ChromeInstaller"); 
-            
-            # Run the installer silently
-            & "$LocalTempDir\$ChromeInstaller" /silent /install; 
-            
-            # Monitor the installation process
-            $Process2Monitor = "ChromeInstaller"; 
-            Do { 
-                $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; 
-                If ($ProcessesFound) { 
-                    "Still running: $($ProcessesFound -join ', ')" | Write-Host; 
-                    Start-Sleep -Seconds 2 
-                } else { 
-                    # Remove installer after installation is complete
-                    rm "$LocalTempDir\$ChromeInstaller" -ErrorAction SilentlyContinue -Verbose 
-                } 
-            } Until (!$ProcessesFound)
-            
-        - name: Verify Chrome Installation
-          run: |
-            # Verify if Chrome was installed successfully
-            if (Get-Command "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ErrorAction SilentlyContinue) {
-              Write-Host "Google Chrome installed successfully."
-            } else {
-              Write-Host "Google Chrome installation failed."
-              exit 1
-            }
+      # Step 5: Install Google Chrome
+      - name: Install Google Chrome
+        run: |
+          $LocalTempDir = $env:TEMP; 
+          $ChromeInstaller = "ChromeInstaller.exe"; 
+          
+          # Download the Chrome installer
+          (new-object System.Net.WebClient).DownloadFile('http://dl.google.com/chrome/install/375.126/chrome_installer.exe', "$LocalTempDir\$ChromeInstaller"); 
+          
+          # Run the installer silently
+          & "$LocalTempDir\$ChromeInstaller" /silent /install; 
+          
+          # Monitor the installation process
+          $Process2Monitor = "ChromeInstaller"; 
+          Do { 
+              $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; 
+              If ($ProcessesFound) { 
+                  "Still running: $($ProcessesFound -join ', ')" | Write-Host; 
+                  Start-Sleep -Seconds 2 
+              } else { 
+                  # Remove installer after installation is complete
+                  rm "$LocalTempDir\$ChromeInstaller" -ErrorAction SilentlyContinue -Verbose 
+              } 
+          } Until (!$ProcessesFound)
 
-      # Step 6: Install ChromeDriver
+      # Step 6: Verify Chrome Installation
+      - name: Verify Chrome Installation
+        run: |
+          # Verify if Chrome was installed successfully
+          if (Get-Command "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ErrorAction SilentlyContinue) {
+            Write-Host "Google Chrome installed successfully."
+          } else {
+            Write-Host "Google Chrome installation failed."
+            exit 1
+          }
+
+      # Step 7: Install ChromeDriver
       - name: Install ChromeDriver
         run: |
           $chrome_version = (Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome").Version
@@ -81,44 +83,43 @@ jobs:
           Expand-Archive -Path chromedriver.zip -DestinationPath C:\chromedriver
           set PATH=%PATH%;C:\chromedriver
 
-      # Step 7: Verify ChromeDriver installation
+      # Step 8: Verify ChromeDriver installation
       - name: Verify ChromeDriver installation
         run: |
           chromedriver --version
           "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --version
 
-      # Step 8: Run the first script
+      # Step 9: Run the first script
       - name: Extract port number for BG TV
         run: |
           echo "Running first file..."
           python get_bg_portnum.py
 
-      # Step 9: Wait briefly
+      # Step 10: Wait briefly
       - name: Wait briefly
         run: timeout 3
 
-      # Step 10: Run the second script
+      # Step 11: Run the second script
       - name: Extract tokens for BG TV and renew playlist
         run: |
           echo "Running second file..."
           python make_playlist.py
 
-      # Step 11: Configure Git
+      # Step 12: Configure Git
       - name: Configure Git
         run: |
           git config --global user.name "mmmw"
           git config --global user.email "mmmw@abv.bg"
 
-      # Step 12: Commit changes
+      # Step 13: Commit changes
       - name: Commit changes
         run: |
           git add -A
           git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
 
-      # Step 13: Push changes
+      # Step 14: Push changes
       - name: Push changes
         run: |
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
