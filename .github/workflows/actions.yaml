@@ -39,14 +39,14 @@ jobs:
           $LocalTempDir = $env:TEMP; 
           $ChromeInstaller = "ChromeInstaller.exe"; 
           
-          # Download the Chrome installer
-          (new-object System.Net.WebClient).DownloadFile('http://dl.google.com/chrome/install/375.126/chrome_installer.exe', "$LocalTempDir\$ChromeInstaller"); 
+          # Download the latest Chrome installer
+          (new-object System.Net.WebClient).DownloadFile('https://dl.google.com/chrome/install/standalone/ChromeSetup.exe', "$LocalTempDir\$ChromeInstaller"); 
           
           # Run the installer silently
-          & "$LocalTempDir\$ChromeInstaller" /silent /install; 
+          Start-Process -FilePath "$LocalTempDir\$ChromeInstaller" -ArgumentList "/silent", "/install" -Wait
           
           # Monitor the installation process
-          $Process2Monitor = "ChromeInstaller"; 
+          $Process2Monitor = "ChromeSetup"; 
           Do { 
               $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; 
               If ($ProcessesFound) { 
@@ -62,7 +62,7 @@ jobs:
       - name: Verify Chrome Installation
         run: |
           # Verify if Chrome was installed successfully
-          if (Get-Command "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ErrorAction SilentlyContinue) {
+          if (Test-Path "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") {
             Write-Host "Google Chrome installed successfully."
           } else {
             Write-Host "Google Chrome installation failed."
