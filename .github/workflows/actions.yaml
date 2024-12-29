@@ -36,8 +36,8 @@ jobs:
       # Step 5: Install Google Chrome
       - name: Install Google Chrome
         run: |
-          curl -LO "https://dl.google.com/chrome/install/standalone/ChromeSetup.exe"
-          Start-Process -FilePath "./ChromeSetup.exe" -ArgumentList "/silent", "/install" -Wait
+          curl -LO "https://dl.google.com/chrome/install/latest/chrome_installer.exe"
+          Start-Process -FilePath "./chrome_installer.exe" -ArgumentList "/silent", "/install" -Wait
 
       # Step 6: Install ChromeDriver
       - name: Install ChromeDriver
