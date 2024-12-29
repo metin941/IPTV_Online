@@ -10,6 +10,13 @@ jobs:
     runs-on: windows-latest # Use a Windows runner
 
     steps:
+      
+      - name: Print Environment Variables
+        run: |
+          echo ImageOS: ${{ runner.os }}
+          echo Version Details:
+          systeminfo
+
     # Step 1: Check out the repository
     - name: Check out repository
       uses: actions/checkout@v3
