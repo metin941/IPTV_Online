@@ -21,6 +21,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
+      # Step 3: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' # Specify a stable Python version
+
+      # Step 4: Install required Python libraries
+      - name: Install Python libraries
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium requests urllib3 regex
+
       - name: Download Google Chrome installer 
         run: |
            $installerPath = "$env:TEMP\chrome_installer.exe" 
@@ -46,3 +58,37 @@ jobs:
           chromedriver --version
           "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --version
 
+      # Step 9: Run the first script
+      - name: Extract port number for BG TV
+        run: |
+          echo "Running first file..."
+          python get_bg_portnum.py
+
+      # Step 10: Wait briefly
+      - name: Wait briefly
+        run: timeout 3
+
+      # Step 11: Run the second script
+      - name: Extract tokens for BG TV and renew playlist
+        run: |
+          echo "Running second file..."
+          python make_playlist.py
+
+      # Step 12: Configure Git
+      - name: Configure Git
+        run: |
+          git config --global user.name "mmmw"
+          git config --global user.email "mmmw@abv.bg"
+
+      # Step 13: Commit changes
+      - name: Commit changes
+        run: |
+          git add -A
+          git commit -m "Automated update: Ran scripts and updated files" || echo "No changes to commit"
+
+      # Step 14: Push changes
+      - name: Push changes
+        run: |
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
