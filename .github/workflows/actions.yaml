@@ -41,15 +41,6 @@ jobs:
       - name: Install Google Chrome
         run: |
            Start-Process -FilePath "$env:TEMP\chrome_installer.exe" -ArgumentList "/silent /install" -Wait 
-      
-      - name: Verify installation 
-        run: | 
-          $chromePath = Get-Command "chrome" -ErrorAction SilentlyContinue
-          if ($chromePath) { 
-            Write-Output "Google Chrome installed successfully."
-          } else { 
-           Write-Error "Google Chrome installation failed." 
-          }
 
       # Step 7: Install ChromeDriver
       - name: Install ChromeDriver
