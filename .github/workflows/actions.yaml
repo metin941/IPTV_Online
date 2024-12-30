@@ -52,10 +52,10 @@ jobs:
           [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\chromedriver', [System.EnvironmentVariableTarget]::Machine)
 
       # Step 9: Run the first script
-      - name: Extract port number for BG TV
+      - name: Extract channels from https://iptv-bg.com
         run: |
           echo "Running first file..."
-          python get_bg_portnum.py
+          python channels_from_iptvbg.py
 
       # Step 10: Wait briefly
       - name: Wait briefly

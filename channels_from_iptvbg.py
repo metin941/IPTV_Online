@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 import re
 import time
 
+# Extract channels from https://iptv-bg.com/
 # Map channel names to URLs
 channel_data = {
     "Kino Nova": "https://iptv-bg.com/kino-nova-online/",
