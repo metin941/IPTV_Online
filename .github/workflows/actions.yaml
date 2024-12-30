@@ -32,21 +32,8 @@ jobs:
 
       - name: Get Chrome Version and install ChromeDriver
         run: |
-          $chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-          if (!(Test-Path $chromePath)) {
-            $chromePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-          }
-          if (Test-Path $chromePath) {
-            $chrome_version = wmic datafile where "name='$chromePath'" get Version /value
-            $chrome_version = $chrome_version -replace "Version=", ""           
-            $chrome_version = $chrome_version -replace '\s+', ''
-            $chrome_version = $chrome_version.Trim()
-          }
-          echo "Installed Chrome version: $chrome_version"
-
-
           echo "Attempting to download ChromeDriver from: $driver_url"
-          $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/$chrome_version/win64/chromedriver-win64.zip"
+          $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.205/win64/chromedriver-win64.zip"
           Invoke-WebRequest -Uri $driver_url -OutFile chromedriver-win64.zip
           Expand-Archive -Path chrome-win64.zip -DestinationPath C:\chromedriver
           [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\chromedriver', [System.EnvironmentVariableTarget]::Machine)
