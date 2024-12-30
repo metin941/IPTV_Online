@@ -40,15 +40,14 @@ jobs:
             # Get Chrome version
             $chrome_version = wmic datafile where "name='$chromePath'" get Version /value
             $chrome_version = $chrome_version -replace "Version=", ""
-            $chrome_version = $chrome_version.Trim()
+            
+            # Remove all spaces from the version string
+            $chrome_version = $chrome_version -replace '\s+', ''  # Removes all spaces, including before and after
 
-            # Remove any additional spaces or newlines, force full trimming
-            $chrome_version = $chrome_version -replace '\s+', ''  # Remove any spaces or newlines
-
-            # Double-check and output the version after cleaning
+            # Confirm cleaned version string
             echo "Installed Chrome version (cleaned): '$chrome_version'"
 
-            # Construct the full URL with the Chrome version (no spaces)
+            # Construct the full URL with the cleaned version string
             $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/$chrome_version/win64/chromedriver-win64.zip"
 
             # Debugging step: Show the URL for verification
@@ -65,5 +64,6 @@ jobs:
             echo "Chrome is not installed."
             exit 1
           }
+
 
 
