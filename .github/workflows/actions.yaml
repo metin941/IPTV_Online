@@ -30,40 +30,24 @@ jobs:
         run: |
            Start-Process -FilePath "$env:TEMP\chrome_installer.exe" -ArgumentList "/silent /install" -Wait 
 
-      - name: Get Chrome Version
+      - name: Get Chrome Version and install ChromeDriver
         run: |
           $chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
           if (!(Test-Path $chromePath)) {
             $chromePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
           }
           if (Test-Path $chromePath) {
-            # Get Chrome version
             $chrome_version = wmic datafile where "name='$chromePath'" get Version /value
             $chrome_version = $chrome_version -replace "Version=", ""
-            
-            # Remove all spaces from the version string
-            $chrome_version = $chrome_version -replace '\s+', ''  # Removes all spaces, including before and after
-
-            # Confirm cleaned version string
-            echo "Installed Chrome version (cleaned): '$chrome_version'"
-
-            # Construct the full URL with the cleaned version string
-            $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/$chrome_version/win64/chromedriver-win64.zip"
-
-            # Debugging step: Show the URL for verification
-            echo "Attempting to download ChromeDriver from: $driver_url"
-            
-            # Download ChromeDriver
-            Invoke-WebRequest -Uri $driver_url -OutFile chromedriver-win64.zip
-
-            # Extract and configure ChromeDriver
-            Expand-Archive -Path chromedriver-win64.zip -DestinationPath C:\chromedriver
-            [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\chromedriver', [System.EnvironmentVariableTarget]::Machine)
-            echo "ChromeDriver installed and PATH updated."
-          } else {
-            echo "Chrome is not installed."
-            exit 1
+            $chrome_version = $chrome_version.Trim()
+            $chrome_version = $chrome_version -replace '\s+', ' '
           }
+          echo "Installed Chrome version: $chrome_version"
 
 
+          echo "Attempting to download ChromeDriver from: $driver_url"
+          $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/$chrome_version/win64/chromedriver-win64.zip"
+          Invoke-WebRequest -Uri $driver_url -OutFile chromedriver-win64.zip
+          Expand-Archive -Path chrome-win64.zip -DestinationPath C:\chromedriver
+          [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\chromedriver', [System.EnvironmentVariableTarget]::Machine)
 
