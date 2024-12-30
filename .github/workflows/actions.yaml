@@ -41,6 +41,7 @@ jobs:
             $chrome_version = $chrome_version -replace "Version=", ""
             $chrome_version = $chrome_version.Trim()
             $chrome_version = $chrome_version -replace "\s+", ""
+            $chrome_version = $chrome_version.Trim()
           }
           echo "Installed Chrome version: $chrome_version"
 
