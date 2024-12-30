@@ -33,7 +33,7 @@ jobs:
       # Step 7: Install ChromeDriver
       - name: Install ChromeDriver
         run: |
-          $chrome_version = wmic datafile where name="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" get Version /value
+          $chrome_version = wmic datafile where name="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" get Version /value
           echo "Installed Chrome version: $chrome_version"
 
           Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-for-testing-public/$driver_version/win64/chrome-win64.zip" -OutFile chrome-win64.zip
