@@ -42,16 +42,16 @@ jobs:
             $chrome_version = $chrome_version -replace "Version=", ""
             $chrome_version = $chrome_version.Trim()
 
-            # Remove any additional spaces or newlines
-            $chrome_version = $chrome_version -replace '\s+', ''  # Remove any extra spaces or newlines
+            # Remove any additional spaces or newlines, force full trimming
+            $chrome_version = $chrome_version -replace '\s+', ''  # Remove any spaces or newlines
 
-            # Confirm cleaned version string
-            echo "Installed Chrome version (cleaned): $chrome_version"
+            # Double-check and output the version after cleaning
+            echo "Installed Chrome version (cleaned): '$chrome_version'"
 
-            # Construct the full URL with the Chrome version
+            # Construct the full URL with the Chrome version (no spaces)
             $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/$chrome_version/win64/chromedriver-win64.zip"
 
-            # Check the URL for debugging
+            # Debugging step: Show the URL for verification
             echo "Attempting to download ChromeDriver from: $driver_url"
             
             # Download ChromeDriver
