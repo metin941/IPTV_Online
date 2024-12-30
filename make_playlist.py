@@ -1,12 +1,9 @@
-#!/usr/bin/python3
-
 import os
 import re
 import requests
 from urllib.parse import urlparse, parse_qs
 import urllib3
 import logging
-import time
 
 # Enable logging for HTTP requests made via the 'requests' library
 logging.basicConfig(level=logging.DEBUG)
@@ -39,11 +36,19 @@ class Channel:
         """Extract the token from the URL."""
         try:
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-            
             # Log the URL and request details
             logger.debug(f"Sending GET request to: {url}")
             
-            response = requests.get(url, verify=False)
+            # Manually include the 'br' encoding type in the 'Accept-Encoding' header
+            headers = {
+                'Accept-Encoding': 'gzip, deflate, br',  # Include 'br' for Brotli support
+                'User-Agent': 'python-requests/2.32.3',
+                'Accept': '*/*',
+                'Connection': 'keep-alive'
+            }
+            
+            # Make the GET request with the custom headers
+            response = requests.get(url, headers=headers, verify=False)
             
             # Log request details
             logger.debug(f"Request Method: GET")
@@ -75,32 +80,6 @@ class Channel:
         else:
             return (f'#EXTINF:-1 tvg-name="{self.name}" tvg-logo="{self.logo}" tvg-id="{self.epg}" group-title="{self.group}",{self.name}\n{self.url}')
 
-    def fetch_url_with_token(self):
-        """Fetch the URL with the extracted token and handle errors."""
-        full_url = f"{self.url}?nimblesessionid={self.token}"
-        headers = {'User-Agent': 'python-requests/2.32.3'}
-
-        logger.debug(f"Sending GET request to: {full_url}")
-        response = requests.get(full_url, headers=headers, verify=False)
-
-        # Log request details
-        logger.debug(f"Request Method: GET")
-        logger.debug(f"Request URL: {full_url}")
-        logger.debug(f"Request Headers: {headers}")
-        logger.debug(f"Request Body: None (GET does not have a body)")
-
-        # Log response details
-        logger.debug(f"Response Status Code: {response.status_code}")
-        logger.debug(f"Response Body: {response.text[:100]}...")  # Only print part of the body for debugging
-
-        if response.status_code == 200:
-            logger.debug("Request successful.")
-        elif response.status_code == 403:
-            logger.error("Token is invalid or expired.")
-        elif response.status_code == 401:
-            logger.error("Unauthorized access, check token or permissions.")
-        else:
-            logger.error(f"Error: {response.status_code}, {response.text}")
 
 def main():
     dir_playlists = 'playlists'
@@ -121,7 +100,7 @@ def main():
                 playlist_country = open(file_country, "w", encoding='utf-8')
                 playlist_country.write(head_playlist + "\n")
                 group = filename.replace(".md", "").title()
-                logger.info(f"Generating {group}")
+                print(f"Generating {group}")
                 for line in markup_file:
                     if "<h1>" in line.lower() and "</h1>" in line.lower():
                         group = re.sub('<[^<>]+>', '', line.strip())
@@ -130,11 +109,6 @@ def main():
                     channel = Channel(group, line)
                     print(channel.to_m3u_line(), file=playlist)
                     print(channel.to_m3u_line(), file=playlist_country)
-
-                    # Example of how to fetch the URL with token after it's added to the URL
-                    if channel.token:
-                        channel.fetch_url_with_token()
-
                 playlist_country.close()
 
 if __name__ == "__main__":
