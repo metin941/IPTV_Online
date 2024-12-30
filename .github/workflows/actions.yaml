@@ -41,12 +41,11 @@ jobs:
             $chrome_version = $chrome_version -replace "Version=", ""
             $chrome_version = $chrome_version.Trim()
             $chrome_version = $chrome_version -replace '\s+', ''
-            echo "Installed Chrome version: $chrome_version"
-          } else {
-            echo "Chrome is not installed."
-            exit 1
-          }
 
+          echo "Installed Chrome version: $chrome_version"
+
+
+          echo "Attempting to download ChromeDriver from: $driver_url"
           $driver_url = "https://storage.googleapis.com/chrome-for-testing-public/$chrome_version/win64/chromedriver-win64.zip"
           Invoke-WebRequest -Uri $driver_url -OutFile chromedriver-win64.zip
           Expand-Archive -Path chrome-win64.zip -DestinationPath C:\chromedriver
