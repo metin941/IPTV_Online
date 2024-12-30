@@ -3,23 +3,6 @@
 | #   | Channel        | Link  | Logo | EPG id |
 |:---:|:--------------:|:-----:|:----:|:------:|
 
-| 1   | BNT | [>](https://ymkaya.xyz:54583/tv/bnt1/playlist.m3u8?) |
-| 2   | Kino Nova | [>](https://ymkaya.xyz:54583/tv/kinonova/playlist.m3u8?) |
-| 3   | Diema Family | [>](https://ymkaya.xyz:54583/tv/diemafamily/playlist.m3u8?) |
-| 4   | Diema | [>](https://ymkaya.xyz:54583/tv/diema/playlist.m3u8?) ||
-| 5   | National Geographic | [>](https://ymkaya.xyz:54583/tv/natgeo/playlist.m3u8?) |
-| 6   | NatGeo Wild | [>](https://ymkaya.xyz:54583/tv/natgeowild/playlist.m3u8?) |
-| 7   | Discovery Tv | [>](https://ymkaya.xyz:54583/tv/discovery/playlist.m3u8?) |
-| 8   | B Cinema | [>](https://ymkaya.xyz:54583/tv/btvcinema/playlist.m3u8?) |
-| 9   | BTV Action | [>](https://ymkaya.xyz:54583/tv/btvaction/playlist.m3u8?) |
-
-| 11  | City TV | [>](https://tv.city.bg/play/tshls/citytv/index.m3u8) |
-| 12  | The voice | [>](https://bss1.neterra.tv/thevoice/thevoice.m3u8) |
-| 13  | DSTV | [>](http://46.249.95.140:8081/hls/data.m3u8) |
-| 14  | Magic Tv | [>](https://bss1.neterra.tv/magictv/magictv.m3u8) |
-| 15  | Tiankov tv | [>](https://streamer103.neterra.tv/tiankov-folk/live.m3u8) |
-| 16  | Tiankov orient tv | [>](https://streamer103.neterra.tv/tiankov-orient/live.m3u8) |
-
 | 13  | TRT 1            | [>](https://tv-trt1.medya.trt.com.tr/master.m3u8) | <img height="20" src="https://i.imgur.com/j786OLG.png"/> | TRT1.tr |
 | 14  | TRT 2 Ⓖ         | [>](https://tv-trt2.medya.trt.com.tr/master.m3u8) | <img height="20" src="https://i.imgur.com/lNWrOE2.png"/> | TRT2.tr |
 | 15  | TRT Haber        | [>](https://tv-trthaber.medya.trt.com.tr/master.m3u8) | <img height="20" src="https://i.imgur.com/OVfo8Ab.png"/> | TRTHaber.tr |
@@ -43,3 +26,20 @@
 | 34  | Beyaz Tv     | [>](https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 34  | Kral Pop Tv     | [>](https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
 | 34  | Power Tv     | [>](https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist.m3u8) | <img height="20" src="https://i.imgur.com/IebUZx1.png"/> |
+
+
+| 11  | City TV | [>](https://tv.city.bg/play/tshls/citytv/index.m3u8) |
+| 12  | The voice | [>](https://bss1.neterra.tv/thevoice/thevoice.m3u8) |
+| 13  | DSTV | [>](http://46.249.95.140:8081/hls/data.m3u8) |
+| 14  | Magic Tv | [>](https://bss1.neterra.tv/magictv/magictv.m3u8) |
+| 15  | Tiankov tv | [>](https://streamer103.neterra.tv/tiankov-folk/live.m3u8) |
+| 16  | Tiankov orient tv | [>](https://streamer103.neterra.tv/tiankov-orient/live.m3u8) |
+
+
+| 1 | Kino Nova | [>](https://ymkaya.xyz:50657/tv/kinonova/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAxOjQ2OjQ1IFBNJmhhc2hfdmFsdWU9aE91ODVYaGsxRGFvVHdQaU1tbGwydz09JnZhbGlkbWludXRlcz02MA==) |
+
+| 1 | Diema Family | [>](https://ymkaya.xyz:50657/tv/diemafamily/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAxOjQ2OjU0IFBNJmhhc2hfdmFsdWU9bEx5dGZOUm1QSi91V3Uxc0ZuK3Zadz09JnZhbGlkbWludXRlcz02MA==) |
+| 1 | Diema | [>](https://ymkaya.xyz:50657/tv/diema/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAxOjQ3OjA2IFBNJmhhc2hfdmFsdWU9NC8vMDNHUzFxK0Ivb2FHa2lhMk1Ddz09JnZhbGlkbWludXRlcz02MA==) |
+| 1 | National Geographic | [>](https://ymkaya.xyz:50657/tv/natgeo/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAxOjQ3OjE3IFBNJmhhc2hfdmFsdWU9UGVlcHhYd1g3a2tmNlRnK3lTYnlsUT09JnZhbGlkbWludXRlcz02MA==) |
+| 1 | NatGeo Wild | [>](https://ymkaya.xyz:50657/tv/natgeowild/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAxOjQ3OjI4IFBNJmhhc2hfdmFsdWU9Uzg3WnVVbFhGZ1ZYaTl1MFpCMkxpdz09JnZhbGlkbWludXRlcz02MA==) |
+| 1 | Discovery Tv | [>](https://ymkaya.xyz:50657/tv/discovery/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAxOjQ3OjM5IFBNJmhhc2hfdmFsdWU9RGs4dnc2ZXZIbHR6WUczbXhzNXpjdz09JnZhbGlkbWludXRlcz02MA==) |
