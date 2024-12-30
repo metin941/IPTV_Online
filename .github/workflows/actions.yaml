@@ -46,7 +46,7 @@ jobs:
       - name: Install ChromeDriver
         run: |
           $chrome_version = wmic datafile where name="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" get Version /value
-          $chrome_version = $chrome_version -replace "Version", ""
+          $chrome_version = $chrome_version -replace "Version=", ""
           $chrome_version = $chrome_version.Trim()
           echo "Installed Chrome version: $chrome_version"
 
