@@ -44,7 +44,7 @@ https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8
 #EXTINF:-1 tvg-name="Kral Pop Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="All TV",Kral Pop Tv
 https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8
 #EXTINF:-1 tvg-name="Power Tv" tvg-logo="https://i.imgur.com/IebUZx1.png" group-title="All TV",Power Tv
-https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist.m3u8nimblesessionid=2393433266
+https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist.m3u8nimblesessionid=2393599468
 #EXTINF:-1 tvg-name="City TV" tvg-logo="" group-title="All TV",City TV
 https://tv.city.bg/play/tshls/citytv/index.m3u8
 #EXTINF:-1 tvg-name="The voice" tvg-logo="" group-title="All TV",The voice
@@ -58,14 +58,14 @@ https://streamer103.neterra.tv/tiankov-folk/live.m3u8
 #EXTINF:-1 tvg-name="Tiankov orient tv" tvg-logo="" group-title="All TV",Tiankov orient tv
 https://streamer103.neterra.tv/tiankov-orient/live.m3u8
 #EXTINF:-1 tvg-name="Kino Nova" tvg-logo="" group-title="All TV",Kino Nova
-https://ymkaya.xyz:50657/tv/kinonova/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAyOjMzOjEzIFBNJmhhc2hfdmFsdWU9NmdrL1ZUZk1wTXBEOU1tbkd0My8vUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=483201
+https://ymkaya.xyz:50657/tv/kinonova/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAzOjMwOjQ2IFBNJmhhc2hfdmFsdWU9V3JpdXdWaU9kUGplQlZIOVBpemRDdz09JnZhbGlkbWludXRlcz02MA==nimblesessionid=484559
 #EXTINF:-1 tvg-name="Diema Family" tvg-logo="" group-title="All TV",Diema Family
-https://ymkaya.xyz:50657/tv/diemafamily/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAyOjMzOjIzIFBNJmhhc2hfdmFsdWU9VlUrZUJMZ1l0SnFTN0dneVVRRnN1dz09JnZhbGlkbWludXRlcz02MA==nimblesessionid=483202
+https://ymkaya.xyz:50657/tv/diemafamily/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAzOjMwOjU2IFBNJmhhc2hfdmFsdWU9VFlzNTRUSXdGNFlVWERlR0RwOHVyUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=484561
 #EXTINF:-1 tvg-name="Diema" tvg-logo="" group-title="All TV",Diema
-https://ymkaya.xyz:50657/tv/diema/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAyOjMzOjM0IFBNJmhhc2hfdmFsdWU9VUVSSHNyblRWeEhiRjZYZ3hteFpXUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=483203
+https://ymkaya.xyz:50657/tv/diema/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAzOjMxOjA2IFBNJmhhc2hfdmFsdWU9a1pjMzc3QWhaRDlSbWlpdEJtS3VaUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=484563
 #EXTINF:-1 tvg-name="National Geographic" tvg-logo="" group-title="All TV",National Geographic
-https://ymkaya.xyz:50657/tv/natgeo/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAyOjMzOjQ0IFBNJmhhc2hfdmFsdWU9aitzUlgvUlZ6NENsaGoxU2lRc0ZmUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=483204
+https://ymkaya.xyz:50657/tv/natgeo/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAzOjMxOjE2IFBNJmhhc2hfdmFsdWU9UkFINnpzdTN5ZUtBdGVrWkE0OWUrdz09JnZhbGlkbWludXRlcz02MA==nimblesessionid=484565
 #EXTINF:-1 tvg-name="NatGeo Wild" tvg-logo="" group-title="All TV",NatGeo Wild
-https://ymkaya.xyz:50657/tv/natgeowild/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAyOjMzOjU0IFBNJmhhc2hfdmFsdWU9dXBJWFBYQjNUMXpLa0dyaW9zWkpEUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=483206
+https://ymkaya.xyz:50657/tv/natgeowild/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAzOjMxOjI3IFBNJmhhc2hfdmFsdWU9YU9SdWdDZnVLM2hQdW93cVBMZjQ3UT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=484566
 #EXTINF:-1 tvg-name="Discovery Tv" tvg-logo="" group-title="All TV",Discovery Tv
-https://ymkaya.xyz:50657/tv/discovery/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAyOjM0OjA0IFBNJmhhc2hfdmFsdWU9RGRIcDl0SEo3bTQwQ0NrWlMxVUpOUT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=483208
+https://ymkaya.xyz:50657/tv/discovery/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTIvMzAvMjAyNCAzOjMxOjM4IFBNJmhhc2hfdmFsdWU9ZmVjUkdYT1ZSMmxsYWt0VFFyTG82UT09JnZhbGlkbWludXRlcz02MA==nimblesessionid=484567
