@@ -27,53 +27,6 @@ class Channel:
         else:
             self.epg = None
 
-        # Extract token if possible
-        self.token = self.extract_token(self.url)
-        if self.token:
-            self.url += f"nimblesessionid={self.token}"
-
-    def extract_token(self, url):
-        """Extract the token from the URL."""
-        try:
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-            # Log the URL and request details
-            logger.debug(f"Sending GET request to: {url}")
-            
-            # Manually include the 'br' encoding type in the 'Accept-Encoding' header
-            headers = {
-                'Accept-Encoding': 'gzip, deflate, br',  # Include 'br' for Brotli support
-                'User-Agent': 'python-requests/2.32.3',
-                'Accept': '*/*',
-                'Connection': 'keep-alive'
-            }
-            
-            # Make the GET request with the custom headers
-            response = requests.get(url, headers=headers, verify=False)
-            
-            # Log request details
-            logger.debug(f"Request Method: GET")
-            logger.debug(f"Request URL: {url}")
-            logger.debug(f"Request Headers: {response.request.headers}")
-            logger.debug(f"Request Body: None (GET does not have a body)")
-
-            # Log response details
-            logger.debug(f"Response Status Code: {response.status_code}")
-            logger.debug(f"Response Body: {response.text[:100]}...")  # Printing part of the response body for brevity
-
-            response.raise_for_status()
-            m3u8_data = response.text
-            for line in m3u8_data.splitlines():
-                if "nimblesessionid" in line:
-                    parsed_url = urlparse(line.strip())
-                    query_params = parse_qs(parsed_url.query)
-                    token = query_params.get("nimblesessionid", [None])[0]
-                    logger.debug(f"Extracted nimblesessionid token: {token}")
-                    return token
-            return None
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Error fetching M3U8 playlist: {e}")
-            return None
-
     def to_m3u_line(self):
         if self.epg is None:
             return (f'#EXTINF:-1 tvg-name="{self.name}" tvg-logo="{self.logo}" group-title="{self.group}",{self.name}\n{self.url}')
