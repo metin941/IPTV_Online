@@ -30,19 +30,19 @@ jobs:
         run: |
            Start-Process -FilePath "$env:TEMP\chrome_installer.exe" -ArgumentList "/silent /install" -Wait 
 
-      # Step 7: Install ChromeDriver
-      - name: Install ChromeDriver
+      - name: Get Chrome Version
         run: |
-          $chrome_version = wmic datafile where name="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" get Version /value
-          echo "Installed Chrome version: $chrome_version"
-
-          Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-for-testing-public/$driver_version/win64/chrome-win64.zip" -OutFile chrome-win64.zip
-          Expand-Archive -Path chrome-win64.zip -DestinationPath C:\chromedriver
-          [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\chromedriver', [System.EnvironmentVariableTarget]::Machine)
-
-      # Step 8: Verify ChromeDriver installation
-      - name: Verify ChromeDriver installation
-        run: |
-          chromedriver --version
-          "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --version
+          $chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+          if (!(Test-Path $chromePath)) {
+            $chromePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+          }
+          if (Test-Path $chromePath) {
+            $chrome_version = wmic datafile where "name='$chromePath'" get Version /value
+            $chrome_version = $chrome_version -replace "Version=", ""
+            $chrome_version = $chrome_version.Trim()
+            echo "Installed Chrome version: $chrome_version"
+          } else {
+            echo "Chrome is not installed."
+            exit 1
+          }
 
