@@ -5,6 +5,11 @@ import re
 import requests
 from urllib.parse import urlparse, parse_qs
 import urllib3
+import logging
+
+# Enable logging for HTTP requests made via the 'requests' library
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger()
 
 EPG_LIST = open('epglist.txt', "r")  # for a clean code
 
@@ -33,7 +38,21 @@ class Channel:
         """Extract the token from the URL."""
         try:
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+            # Log the URL and request details
+            logger.debug(f"Sending GET request to: {url}")
+            
             response = requests.get(url, verify=False)
+            
+            # Log request details
+            logger.debug(f"Request Method: GET")
+            logger.debug(f"Request URL: {url}")
+            logger.debug(f"Request Headers: {response.request.headers}")
+            logger.debug(f"Request Body: None (GET does not have a body)")
+
+            # Log response details
+            logger.debug(f"Response Status Code: {response.status_code}")
+            logger.debug(f"Response Body: {response.text[:100]}...")  # Printing part of the response body for brevity
+
             response.raise_for_status()
             m3u8_data = response.text
             for line in m3u8_data.splitlines():
@@ -41,10 +60,11 @@ class Channel:
                     parsed_url = urlparse(line.strip())
                     query_params = parse_qs(parsed_url.query)
                     token = query_params.get("nimblesessionid", [None])[0]
+                    logger.debug(f"Extracted nimblesessionid token: {token}")
                     return token
             return None
         except requests.exceptions.RequestException as e:
-            print(f"Error fetching M3U8 playlist: {e}")
+            logger.error(f"Error fetching M3U8 playlist: {e}")
             return None
 
     def to_m3u_line(self):
@@ -58,11 +78,13 @@ def main():
     dir_playlists = 'playlists'
     if not os.path.isdir(dir_playlists):
         os.mkdir(dir_playlists)
+    
     with open("playlist.m3u8", "w", encoding='utf-8') as playlist:
         processed_epg_list = ", ".join(EPG_LIST).replace('\n', '')
         head_playlist = f'#EXTM3U x-tvg-url="{processed_epg_list}"'
         print(f'#EXTM3U x-tvg-url="{processed_epg_list}"', file=playlist)
         os.chdir("lists")
+        
         for filename in sorted(os.listdir(".")):
             if filename == "README.md" or not filename.endswith(".md"):
                 continue
