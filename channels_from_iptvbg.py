@@ -6,6 +6,16 @@ import time
 # Extract channels from https://iptv-bg.com/
 # Map channel names to URLs
 channel_data = {
+    "BNT1": "https://iptv-bg.com/bnt-1-online/",
+    "Nova TV": "https://iptv-bg.com/nova-tv-online/",
+    "AXN": "https://iptv-bg.com/axn-online/",
+    "FOX Life": "https://iptv-bg.com/fox-life-online/",
+    "Star Crime": "https://iptv-bg.com/fox-crime-online/",
+    "Nova Sport": "https://iptv-bg.com/nova-sport-online/",
+    "Ring BG": "https://iptv-bg.com/ring-bg-online/",
+    "BTV Comedy": "https://iptv-bg.com/btv-comedy-online/",
+    "BTV Cinema": "https://iptv-bg.com/btv-cinema-online/",
+    "BTV Action": "https://iptv-bg.com/btv-action/",
     "Kino Nova": "https://iptv-bg.com/kino-nova-online/",
     "Diema Family": "https://iptv-bg.com/diema-family-online/",
     "Diema": "https://iptv-bg.com/diema-online/",
