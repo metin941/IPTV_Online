@@ -41,7 +41,7 @@ def capture_channel_php_content(channel_name, url, max_attempts=5):
     try:
         # Open the URL
         driver.get(url)
-        time.sleep(2)  # Initial page load wait
+        time.sleep(5)  # Initial page load wait
 
         php_url = None
         attempts = 0
